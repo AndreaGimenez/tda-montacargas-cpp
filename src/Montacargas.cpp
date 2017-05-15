@@ -10,8 +10,7 @@ Montacargas::Montacargas(float pesoDeLaCargaMaxima) {
 
     this->cargaMaximaSoportada = pesoDeLaCargaMaxima;
     this->carga = 0.0;
-    this->cargaAcumuladas = 0.0;
-    this->cargasRealizadas = 0;
+    this->cargasRealizadas = new Lista<float>;
 }
 
 float Montacargas::obtenerCargaMaximaSoportada() {
@@ -40,22 +39,24 @@ void Montacargas::descargar() {
 
     if (this->estaCargado()) {
 
-        this->cargaAcumuladas += carga;
+        this->cargasRealizadas->agregar(this->carga);
+
         this->carga = 0;
-        this->cargasRealizadas++;
     }
 }
 
 float Montacargas::obtenerCargaPromedio() {
 
-    float cargaPromedio = 0;
+    float cargaTotal = 0;
 
-    if (this->cargasRealizadas > 0) {
+    this->cargasRealizadas->iniciarCursor();
+    while (this->cargasRealizadas->avanzarCursor()) {
 
-        cargaPromedio = this->cargaAcumuladas / this->cargasRealizadas;
+        cargaTotal += this->cargasRealizadas->obtenerCursor();
     }
 
-    return cargaPromedio;
+    return this->cargasRealizadas->estaVacia() ?
+            0 : (cargaTotal / this->cargasRealizadas->contarElementos());
 }
 
 void Montacargas::validarCarga(float unaCarga) {
@@ -73,6 +74,28 @@ void Montacargas::validarCarga(float unaCarga) {
     }
 }
 
+unsigned int
+    Montacargas::contarCargasRealizadasQueSuperan(float cargaDeReferencia) {
+
+    unsigned int cargasQueSuperaronLaCargaDeReferencia = 0;
+
+    this->cargasRealizadas->iniciarCursor();
+    while (this->cargasRealizadas->avanzarCursor()) {
+
+        float unaCargaRealizada = this->cargasRealizadas->obtenerCursor();
+
+        if (unaCargaRealizada > cargaDeReferencia) {
+            cargasQueSuperaronLaCargaDeReferencia++;
+        }
+    }
+
+    return cargasQueSuperaronLaCargaDeReferencia;
+}
+
+Montacargas::~Montacargas() {
+
+    delete this->cargasRealizadas;
+}
 
 
 

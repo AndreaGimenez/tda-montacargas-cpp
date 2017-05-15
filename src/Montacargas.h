@@ -1,6 +1,8 @@
 #ifndef MONTACARGAS_H_
 #define MONTACARGAS_H_
 
+#include "Lista.h"
+
 /**
  * Un Montacargas es herramienta que permite cargar y descargar cargas.
  *
@@ -18,9 +20,7 @@ class Montacargas {
 
         float carga;
 
-        unsigned int cargasRealizadas;
-
-        float cargaAcumuladas;
+        Lista<float>* cargasRealizadas;
 
     public:
 
@@ -65,6 +65,18 @@ class Montacargas {
          *       es decir que fueron cargadas y descargadas.
          */
         float obtenerCargaPromedio();
+
+        /*
+         * post: devuelve la cantidad de veces que se cargo y descargó
+         *       una carga cuyo peso [Kg] superó 'cargaDeReferencia'.
+         *
+         */
+        unsigned int contarCargasRealizadasQueSuperan(float cargaDeReferencia);
+
+        /*
+         * post: libera los recursos asociados a la instancia.
+         */
+        ~Montacargas();
 
     private:
 
