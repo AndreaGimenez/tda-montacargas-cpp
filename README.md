@@ -19,8 +19,6 @@ Algoritmos y Programación 2 - FI UBA
 * obtenerCargaPromedio: devuelve el peso (Kg) promedio de las cargas completadas 
  (cargadas y luego descargadas)
  
-Ejemplifique el uso de la clase, indicando el resultado esperado.
-
 2. Implementar la operación:
 
 ```C++
@@ -32,6 +30,8 @@ Ejemplifique el uso de la clase, indicando el resultado esperado.
         unsigned int contarCargasRealizadasQueSuperan(float cargaDeReferencia);
 ```
 
+3. Proporcione un ejemplo de uso de la clase.
+
 ### Solución
 
 #### Punto 1
@@ -40,10 +40,12 @@ Ejemplifique el uso de la clase, indicando el resultado esperado.
 
 `Montacargas.cpp` [ver](../punto-01/src/Montacargas.cpp)
 
-`main.cpp` [ver](../punto-01/src/main.cpp)
-
 #### Punto 2
 
 `Montacargas.h` [ver](../punto-02/src/Montacargas.h)
 
 `Montacargas.cpp` [ver](../punto-02/src/Montacargas.cpp)
+
+##### Punto 3
+
+`main.cpp` [ver](../punto-03/src/main.cpp)
