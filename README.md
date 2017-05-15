@@ -46,6 +46,6 @@ Algoritmos y Programación 2 - FI UBA
 
 `Montacargas.cpp` [ver](../punto-02/src/Montacargas.cpp)
 
-##### Punto 3
+#### Punto 3
 
 `main.cpp` [ver](../punto-03/src/main.cpp)
