@@ -5,7 +5,7 @@ Montacargas::Montacargas(float pesoDeLaCargaMaxima) {
 
     if (pesoDeLaCargaMaxima <= 0) {
 
-        throw std::string("La carga máxima de un montacargas debe ser mayor a 0");
+        throw std::string("La carga máxima debe ser mayor a 0");
     }
 
     this->cargaMaximaSoportada = pesoDeLaCargaMaxima;
@@ -26,12 +26,9 @@ float Montacargas::obtenerCarga() {
 
 void Montacargas::cargar(float unaCarga) {
 
-    if (! this->estaCargado() &&
-        (unaCarga > 0) &&
-        (unaCarga <= cargaMaximaSoportada)) {
+    this->validarCarga(unaCarga);
 
-        this->carga = unaCarga;
-    }
+    this->carga = unaCarga;
 }
 
 bool Montacargas::estaCargado() {
@@ -60,3 +57,28 @@ float Montacargas::obtenerCargaPromedio() {
 
     return cargaPromedio;
 }
+
+void Montacargas::validarCarga(float unaCarga) {
+
+    if (this->estaCargado()) {
+        throw std::string("No se puede cargar un montacargas ya cargado");
+    }
+
+    if (unaCarga <= 0) {
+        throw std::string("No se puede cargar una carga menor o igual a cero");
+    }
+
+    if (unaCarga > cargaMaximaSoportada) {
+        throw std::string("No se puede cargar una carga que supera el máximo");
+    }
+}
+
+
+
+
+
+
+
+
+
+

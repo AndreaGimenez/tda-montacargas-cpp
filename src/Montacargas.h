@@ -2,7 +2,13 @@
 #define MONTACARGAS_H_
 
 /**
- * Un Montacargas es ...
+ * Un Montacargas es herramienta que permite cargar y descargar cargas.
+ *
+ * El Montacargas puede soportar cargas de hasta cierto peso especificado
+ * en su construcción.
+ *
+ * En todo momento el Montacargas está con carga o sin carga.
+ *
  */
 class Montacargas {
 
@@ -36,9 +42,9 @@ class Montacargas {
          */
         float obtenerCarga();
 
-
         /*
-         * pre : no está cargado y 'unaCarga' es un valor mayor a cero.
+         * pre : no está cargado y 'unaCarga' es un valor mayor a cero y
+         *       menor a obtenerCargaMaximaSoportada().
          * post: coloca 'unaCarga' [Kg] en el Montacargas.
          */
         void cargar(float unaCarga);
@@ -60,6 +66,12 @@ class Montacargas {
          */
         float obtenerCargaPromedio();
 
+    private:
+
+        /*
+         * post: lanza una excepción si unaCarga es un valor inválido.
+         */
+        void validarCarga(float unaCarga);
 };
 
 #endif /* MONTACARGAS_H_ */
